@@ -2,7 +2,7 @@
 В корневой папке нужно создать файл .env с содержимым `VITE_BASE_API=https://api.example.com`
 ## Команды
 ```
-npm init
+npm install
 ```
 ```
 npm run dev - для разработки
