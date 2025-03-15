@@ -1,6 +1,11 @@
 const URL = import.meta.env.VITE_BASE_API;
-
-
+// const URL = https://api.example.com - раскоментировать если не работает env
+const postLoginAddress = '/api/login';
+const patchPolicyAddress = '/api/policy';
+const getPolicyAddress = '/api/policy';
+const postRegistrationAddress = '/';
+const postLogsAddress = '';
+const getPasswordAddress = '/api/generatePassword';
 
 export type TPoliticResponse = {
   success: boolean;
@@ -18,7 +23,7 @@ export type TPoliticResponse = {
 
 // Выполняем запрос
 export const postLogin = (data: { username: string; password: string }) =>
-  fetch(`${URL}/api/login`, {
+  fetch(`${URL}${postLoginAddress}`, {
     method: "POST", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
@@ -41,7 +46,7 @@ export const patchPolicy = (data: {
     lowerCase: "SET" | "NOT_SET";
     countOfSymbols: number;
   }) =>
-  fetch(`${URL}/api/policy`, {
+  fetch(`${URL}${patchPolicyAddress}`, {
     method: "PATCH", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
@@ -55,7 +60,7 @@ export const patchPolicy = (data: {
   });
 
 export const getPolicy = () =>
-  fetch(`${URL}/api/policy`).then((response) => {
+  fetch(`${URL}${getPolicyAddress}`).then((response) => {
     if (!response.ok) {
         return Promise.reject(`Ошибка: ${response.status}`);
     }
@@ -67,7 +72,7 @@ export const postRegistration = (data: {
   password: string;
   role: string;
 }) =>
-  fetch(`${URL}/`, {
+  fetch(`${URL}${postRegistrationAddress}`, {
     method: "POST", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
@@ -81,7 +86,7 @@ export const postRegistration = (data: {
   });
 
 export const postLogs = (data: { username: string; action: string }) =>
-  fetch(`${URL}`, {
+  fetch(`${URL}${postLogsAddress}`, {
     method: "POST", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
@@ -95,7 +100,7 @@ export const postLogs = (data: { username: string; action: string }) =>
   });
 
 export const getPassword = () =>
-  fetch(`${URL}/api/generatePassword`).then((response) => {
+  fetch(`${URL}${getPasswordAddress}`).then((response) => {
     if (!response.ok) {
         return Promise.reject(`Ошибка: ${response.status}`);
     }

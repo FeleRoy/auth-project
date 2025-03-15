@@ -40,10 +40,11 @@ function Registration() {
   const generatePassword = () => {
     getPassword()
       .then((data) => {
-        setPassword(data);
+        setPassword(data.pasJson);
       })
       .catch((error) => {
         setError(`${error}`);
+        console.log('Ошибка: ' + error);
       });
   };
   return (
