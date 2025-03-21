@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: auth-project-app
+    build:
+      context: .  # Указываем текущую директорию как контекст для сборки
+      dockerfile: Dockerfile  # Указываем путь к Dockerfile
+    ports:
+      - "8080:80"  # Пробрасываем порт 80 контейнера на порт 8080 хоста
+    restart: unless-stopped  # Автоматически перезапускать контейнер, если он остановлен
+    volumes:
+      - ./dist:/usr/share/nginx/html  # Монтируем папку dist для разработки (опционально)
+    networks:
+      - react-network
+
+networks:
+  react-network:
+    driver: bridge
