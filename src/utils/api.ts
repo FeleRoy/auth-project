@@ -1,11 +1,11 @@
 const URL = import.meta.env.VITE_BASE_API;
-// const URL = http://localhost:8080; //- раскоментировать если не работает env
-const postLoginAddress = '/api/login';
-const patchPolicyAddress = '/api/policy';
-const getPolicyAddress = '/api/policy';
+// const URL = 'http://localhost:8080/api'; //- раскоментировать если не работает env
+const postLoginAddress = '/login';
+const patchPolicyAddress = '/policy';
+const getPolicyAddress = '/policy';
 const postRegistrationAddress = '/registration/user';
 const postLogsAddress = '/log/event';
-const getPasswordAddress = '/api/generatePassword';
+const getPasswordAddress = '/generatePassword';
 const postPasswordRecoveryAddress = '/log/recoveryPassword'; // отправить запрос на изменение пароля
 
 export type TPoliticResponse = {
