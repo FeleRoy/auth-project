@@ -1,5 +1,5 @@
-const URL = import.meta.env.VITE_BASE_API;
-// const URL = 'http://localhost:8080/api'; //- раскоментировать если не работает env
+//const URL = import.meta.env.VITE_BASE_API; //- раскоментировать если работает env
+const URL = 'http://localhost:8080/api'; 
 const postLoginAddress = '/login';
 const patchPolicyAddress = '/policy';
 const getPolicyAddress = '/policy';
