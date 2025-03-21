@@ -115,7 +115,7 @@ function Registration() {
           </select>
         </div>
         <button type="submit" style={{ width: "100%", padding: "10px" }}>
-          Войти
+          Зарегестрироваться
         </button>
       </form>
     </div>
