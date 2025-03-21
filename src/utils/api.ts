@@ -37,7 +37,7 @@ export const postLogin = (data: { username: string; password: string }) =>
     return response.json();
   });
 
-export const postPasswordRecovery = (data: { username: string; newpassword: string }) =>
+export const postPasswordRecovery = (data: { username: string; action: string }) =>
   fetch(`${URL}${postPasswordRecoveryAddress}`, {
     method: "POST", // Метод запроса
     headers: {

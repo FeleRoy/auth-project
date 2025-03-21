@@ -17,7 +17,7 @@ function PasswordRecovery() {
       return;
     }
 
-    postPasswordRecovery({ username: username, newpassword: password })
+    postPasswordRecovery({ username: username, action: password })
       .then((data) => {
         console.log("Success:", data); 
         alert('Запрос отправлен админу');
