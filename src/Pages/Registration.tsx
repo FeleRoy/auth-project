@@ -110,7 +110,6 @@ function Registration() {
             onChange={(e) => setRole(e.target.value)}
             style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
           >
-            <option value="ADMIN">ADMIN</option>
             <option value="USER">USER</option>
           </select>
         </div>
