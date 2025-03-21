@@ -14,3 +14,12 @@ npm run preview - для просмотра
 npm run build - для сборки проекта (появится папка dist)
 ```
 
+## DOCKER
+
+```
+docker build -t auth-project-front .
+```
+
+```
+docker run -p 8080:80 auth-project-front
+```
