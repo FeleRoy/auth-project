@@ -1,16 +1,11 @@
 import { FormEvent, useState } from "react";
-import { postLogin } from "../utils/api";
-import { useDispatch } from "react-redux";
-import { setRoleAction, setUserAction } from "../services/slice";
-import { useNavigate } from "react-router-dom";
+import { postPasswordRecovery } from "../utils/api";
 
-function Login() {
+function PasswordRecovery() {
   // Состояния для хранения значений полей и ошибок
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   // Обработчик отправки формы
   const handleSubmit = (e: FormEvent) => {
@@ -22,18 +17,10 @@ function Login() {
       return;
     }
 
-    postLogin({ username: username, password: password })
+    postPasswordRecovery({ username: username, newpassword: password })
       .then((data) => {
         console.log("Success:", data); 
-        dispatch(setUserAction(username));
-        dispatch(setRoleAction(data.role))
-        if(data.role === "ADMIN") {
-          navigate('/admin');
-        }
-        if(data.role === "USER") {
-          navigate('/user');
-        }
-
+        alert('Запрос отправлен админу');
         setUsername("");
         setPassword("");
         setError("");
@@ -41,6 +28,8 @@ function Login() {
       .catch((error) => {
         setError(`${error}`);
       });
+
+
 
 
   };
@@ -55,11 +44,11 @@ function Login() {
         borderRadius: "10px",
       }}
     >
-      <h2>Вход</h2>
+      <h2>Запрос на новый пароль</h2>
       {error && <p style={{ color: "red" }}>{error}</p>} {/* Вывод ошибки */}
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="username">Логин:</label>
+          <label htmlFor="username">Ваш логин:</label>
           <input
             type="text"
             id="username"
@@ -69,7 +58,7 @@ function Login() {
           />
         </div>
         <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="password">Пароль:</label>
+          <label htmlFor="password">Новый пароль:</label>
           <input
             type="password"
             id="password"
@@ -78,7 +67,6 @@ function Login() {
             style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
           />
         </div>
-        <a href="/passwordrecovery">Забыли пароль?</a>
         <button type="submit" style={{ width: "100%", padding: "10px", marginTop: "" }}>
           Войти
         </button>
@@ -87,4 +75,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default PasswordRecovery;

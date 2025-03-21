@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
     const role = useSelector(getRoleSelector);
 
   if (role !== "ADMIN") { // если пользователя в хранилище нет, то делаем редирект
-    return <Navigate replace to='/greeting'/>;
+    return <Navigate replace to='/'/>;
   }
   
   if (role === "ADMIN") {

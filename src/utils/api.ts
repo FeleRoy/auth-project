@@ -1,11 +1,12 @@
 const URL = import.meta.env.VITE_BASE_API;
-// const URL = https://api.example.com - раскоментировать если не работает env
+// const URL = http://localhost:8080; //- раскоментировать если не работает env
 const postLoginAddress = '/api/login';
 const patchPolicyAddress = '/api/policy';
 const getPolicyAddress = '/api/policy';
-const postRegistrationAddress = '/';
-const postLogsAddress = '';
+const postRegistrationAddress = '/registration/user';
+const postLogsAddress = '/log/event';
 const getPasswordAddress = '/api/generatePassword';
+const postPasswordRecoveryAddress = '/log/recoveryPassword'; // отправить запрос на изменение пароля
 
 export type TPoliticResponse = {
   success: boolean;
@@ -24,6 +25,20 @@ export type TPoliticResponse = {
 // Выполняем запрос
 export const postLogin = (data: { username: string; password: string }) =>
   fetch(`${URL}${postLoginAddress}`, {
+    method: "POST", // Метод запроса
+    headers: {
+      "Content-Type": "application/json", // Указываем, что отправляем JSON
+    },
+    body: JSON.stringify(data), // Преобразуем данные в JSON-строку
+  }).then((response) => {
+    if (!response.ok) {
+        return Promise.reject(`Ошибка: ${response.status}`);
+    }
+    return response.json();
+  });
+
+export const postPasswordRecovery = (data: { username: string; newpassword: string }) =>
+  fetch(`${URL}${postPasswordRecoveryAddress}`, {
     method: "POST", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
