@@ -49,7 +49,7 @@ function NewPassword() {
         borderRadius: "10px",
       }}
     >
-      <h2>Смена пароля</h2>
+      <h2>Смена пароля для {username}</h2>
       {error && <p style={{ color: "red" }}>{error}</p>} {/* Вывод ошибки */}
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "15px" }}>
