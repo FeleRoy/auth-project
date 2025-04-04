@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { postPasswordRecovery } from "../utils/api";
+import { postGenerateCode, postPasswordRecovery } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
 function PasswordRecovery() {
@@ -25,15 +25,12 @@ function PasswordRecovery() {
         alert('Запрос отправлен админу');
         setUsername("");
         setError("");
+        postGenerateCode();
         navigate('/code-check');
       })
       .catch((error) => {
         setError(`${error}`);
       });
-
-
-
-
   };
 
   return (
