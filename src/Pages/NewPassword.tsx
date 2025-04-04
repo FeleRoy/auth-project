@@ -1,23 +1,23 @@
 import { FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getIsCodeValid } from "../services/slice";
+import { getIsCodeValid, getUserSelector } from "../services/slice";
 import { postNewPassword } from "../utils/api";
 
 function NewPassword() {
   // Состояния для хранения значений полей и ошибок
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const isCodeValid = useSelector(getIsCodeValid);
   const navigate = useNavigate();
+  const username = useSelector(getUserSelector);
 
   // Обработчик отправки формы
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault(); // Предотвращаем стандартное поведение формы
 
     // Базовая валидация
-    if (!username || !password) {
+    if (!password) {
       setError("Пожалуйста, заполните все поля.");
       return;
     }
@@ -27,7 +27,6 @@ function NewPassword() {
         console.log("Success:", data); 
         alert('Новый пароль установлен')
         navigate('/login');
-        setUsername("");
         setPassword("");
         setError("");
       })
@@ -53,16 +52,6 @@ function NewPassword() {
       <h2>Смена пароля</h2>
       {error && <p style={{ color: "red" }}>{error}</p>} {/* Вывод ошибки */}
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: "15px" }}>
-          <label htmlFor="username">Логин:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            style={{ width: "100%", padding: "8px", boxSizing: "border-box" }}
-          />
-        </div>
         <div style={{ marginBottom: "15px" }}>
           <label htmlFor="password">Новый пароль:</label>
           <input

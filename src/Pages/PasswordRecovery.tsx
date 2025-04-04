@@ -1,11 +1,14 @@
 import { FormEvent, useState } from "react";
 import { postGenerateCode, postPasswordRecovery } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUserAction } from "../services/slice";
 
 function PasswordRecovery() {
   // Состояния для хранения значений полей и ошибок
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -26,6 +29,7 @@ function PasswordRecovery() {
         setUsername("");
         setError("");
         postGenerateCode();
+        dispatch(setUserAction(username));
         navigate('/code-check');
       })
       .catch((error) => {
