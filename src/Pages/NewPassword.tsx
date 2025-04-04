@@ -34,12 +34,10 @@ function NewPassword() {
       .catch((error) => {
         setError(`${error}`);
       });
-
-
   };
 
   if (!isCodeValid) {
-    return <div>Не нарушайте правила! Введите сначала код</div>
+    return <div style={{color: 'red'}}>Не нарушайте правила! Введите сначала код</div>
   }
 
   return (isCodeValid &&

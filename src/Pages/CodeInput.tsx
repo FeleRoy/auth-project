@@ -9,6 +9,7 @@ import "./CodeInput.css"; // Подключаем стили
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setIsCodeValid } from "../services/slice";
+import { postCheckCode } from "../utils/api";
 
 const CodeInput: React.FC = () => {
   const [code, setCode] = useState<string[]>(["", "", "", ""]);
@@ -44,20 +45,20 @@ const CodeInput: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // postCheckCode({ code: code.join("")})
-    //       .then((data) => {
-    //         console.log("Success:", data); 
-    //         alert('Запрос отправлен админу');
-    //         setError("");
-    //         navigate('/new-password');
-    //       })
-    //       .catch((error) => {
-    //         setError(`${error}`);
-    //       });
+    postCheckCode({code: code.join("")})
+            .then((data) => {
+            console.log("Success:", data); 
+            alert('Запрос отправлен админу');
+            setError("");
+            dispatch(setIsCodeValid(true));
+            navigate('/new-password');
+          })
+          .catch((error) => {
+            setError(`${error}`);
+            navigate(-1);
+          });
 
-    // засунуть в success
-    dispatch(setIsCodeValid(true));
-    navigate('/new-password');
+
   };
 
   return (

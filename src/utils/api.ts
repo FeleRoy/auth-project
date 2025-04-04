@@ -7,7 +7,7 @@ const postRegistrationAddress = '/registration/user';
 const postLogsAddress = '/log/event';
 const getPasswordAddress = '/generatePassword';
 const postPasswordRecoveryAddress = '/log/recoveryPassword'; // отправить запрос на изменение пароля
-const postCheckCodeAddress = '' // отправить код
+const postCheckCodeAddress = '/checkCode' // отправить код
 const postNewPasswordAddress = '/updatePassword' //отправить новый пароль
 
 export type TPoliticResponse = {
@@ -23,6 +23,21 @@ export type TPoliticResponse = {
     countOfSymbols: number;
   };
 };
+
+
+export const postCheckCode = (data: {code: string}) => 
+  fetch(`${URL}${postCheckCodeAddress}`, {
+    method: "POST", // Метод запроса
+    headers: {
+      "Content-Type": "application/json", // Указываем, что отправляем JSON
+    },
+    body: JSON.stringify(data), // Преобразуем данные в JSON-строку
+  }).then((response) => {
+    if (!response.ok) {
+        return Promise.reject(`Ошибка: ${response.status}`);
+    }
+    return response.json();
+  });
 
 
 export const postNewPassword = (data: { username: string; password: string }) =>
