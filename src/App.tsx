@@ -8,6 +8,8 @@ import PasswordGeneratorForm from './Pages/Admin';
 import { User } from './Pages/User';
 import PasswordRecovery from './Pages/PasswordRecovery';
 import { ProtectedRoute } from './Pages/ProtectedRoute';
+import CodeInput from './Pages/CodeInput';
+import NewPassword from './Pages/NewPassword';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path="/user" element= {<User/>}/>
         <Route path="*" element={<NotFound/>}/>
         <Route path='/passwordrecovery' element={<PasswordRecovery/>}/>
+        <Route path='/code-check' element={<CodeInput/>} />
+        <Route path='/new-password' element={<NewPassword/>}/>
       </Routes>
     </>
   )

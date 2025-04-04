@@ -13,6 +13,7 @@ interface sliceState {
   };
   role: "ADMIN" | "USER";
   user: string;
+  isCodeValid: boolean;
 }
 
 const initialState: sliceState = {
@@ -28,6 +29,7 @@ const initialState: sliceState = {
   },
   role: "USER",
   user: "",
+  isCodeValid: false
 };
 
 export const mainSlice = createSlice({
@@ -40,14 +42,18 @@ export const mainSlice = createSlice({
     setRoleAction: (state, action: PayloadAction<"ADMIN" | "USER">) => {
         state.role = action.payload;
     },
+    setIsCodeValid: (state, action: PayloadAction<boolean>) => {
+      state.isCodeValid = action.payload
+    }
   },
   selectors: {
     getRoleSelector: (state) => state.role,
     getPoliticSelector: (state) => state.politicSettings,
     getUserSelector: (state) => state.user,
+    getIsCodeValid: (state) => state.isCodeValid
   },
 });
 
-export const { getRoleSelector, getPoliticSelector, getUserSelector } = mainSlice.selectors;
+export const { getRoleSelector, getPoliticSelector, getUserSelector, getIsCodeValid } = mainSlice.selectors;
 
-export const {setUserAction, setRoleAction} = mainSlice.actions;
+export const {setUserAction, setRoleAction, setIsCodeValid} = mainSlice.actions;

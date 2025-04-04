@@ -7,6 +7,8 @@ const postRegistrationAddress = '/registration/user';
 const postLogsAddress = '/log/event';
 const getPasswordAddress = '/generatePassword';
 const postPasswordRecoveryAddress = '/log/recoveryPassword'; // отправить запрос на изменение пароля
+const postCheckCodeAddress = '' // отправить код
+const postNewPasswordAddress = '' //отправить новый пароль
 
 export type TPoliticResponse = {
   success: boolean;
