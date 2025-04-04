@@ -8,7 +8,7 @@ const postLogsAddress = '/log/event';
 const getPasswordAddress = '/generatePassword';
 const postPasswordRecoveryAddress = '/log/recoveryPassword'; // отправить запрос на изменение пароля
 const postCheckCodeAddress = '' // отправить код
-const postNewPasswordAddress = '' //отправить новый пароль
+const postNewPasswordAddress = '/updatePassword' //отправить новый пароль
 
 export type TPoliticResponse = {
   success: boolean;
@@ -24,7 +24,22 @@ export type TPoliticResponse = {
   };
 };
 
-// Выполняем запрос
+
+export const postNewPassword = (data: { username: string; password: string }) =>
+  fetch(`${URL}${postNewPasswordAddress}`, {
+    method: "POST", // Метод запроса
+    headers: {
+      "Content-Type": "application/json", // Указываем, что отправляем JSON
+    },
+    body: JSON.stringify(data), // Преобразуем данные в JSON-строку
+  }).then((response) => {
+    if (!response.ok) {
+        return Promise.reject(`Ошибка: ${response.status}`);
+    }
+    return response.json();
+  });
+
+
 export const postLogin = (data: { username: string; password: string }) =>
   fetch(`${URL}${postLoginAddress}`, {
     method: "POST", // Метод запроса

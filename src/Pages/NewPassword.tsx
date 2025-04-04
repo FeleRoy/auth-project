@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getIsCodeValid } from "../services/slice";
+import { postNewPassword } from "../utils/api";
 
 function NewPassword() {
   // Состояния для хранения значений полей и ошибок
@@ -21,18 +22,18 @@ function NewPassword() {
       return;
     }
 
-    // postNewPassword({ username: username, password: password })
-    //   .then((data) => {
-    //     console.log("Success:", data); 
-    //     alert('Новый пароль установлен')
-    //     navigate('/login');
-    //     setUsername("");
-    //     setPassword("");
-    //     setError("");
-    //   })
-    //   .catch((error) => {
-    //     setError(`${error}`);
-    //   });
+    postNewPassword({ username: username, password: password })
+      .then((data) => {
+        console.log("Success:", data); 
+        alert('Новый пароль установлен')
+        navigate('/login');
+        setUsername("");
+        setPassword("");
+        setError("");
+      })
+      .catch((error) => {
+        setError(`${error}`);
+      });
 
 
   };
