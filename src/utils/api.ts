@@ -56,7 +56,7 @@ export const postCheckCode = (data: {code: string}) =>
 
 export const postNewPassword = (data: { username: string; password: string }) =>
   fetch(`${URL}${postNewPasswordAddress}`, {
-    method: "POST", // Метод запроса
+    method: "PUT", // Метод запроса
     headers: {
       "Content-Type": "application/json", // Указываем, что отправляем JSON
     },
