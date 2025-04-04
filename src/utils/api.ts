@@ -61,9 +61,10 @@ export const postNewPassword = (data: { username: string; password: string }) =>
       "Content-Type": "application/json", // Указываем, что отправляем JSON
     },
     body: JSON.stringify(data), // Преобразуем данные в JSON-строку
-  }).then((response) => {
+  }).then(async (response) => {
+    const result = await response.json();
     if (!response.ok) {
-        return Promise.reject(`Ошибка: ${response.status}`);
+        return Promise.reject(`Ошибка: ${result.message}`);
     }
     return response.json();
   });
