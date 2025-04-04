@@ -55,7 +55,7 @@ const CodeInput: React.FC = () => {
           })
           .catch((error) => {
             setError(`${error}`);
-            //navigate(-1);
+            navigate(-1);
           });
 
 
