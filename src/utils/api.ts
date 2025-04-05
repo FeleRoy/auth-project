@@ -66,7 +66,7 @@ export const postNewPassword = (data: { username: string; password: string }) =>
     if (!response.ok) {
         return Promise.reject(`Ошибка: ${result.message}`);
     }
-    return response.json();
+    return result;
   });
 
 
@@ -145,7 +145,7 @@ export const postRegistration = (data: {
     if (!response.ok) {
         return Promise.reject(`Ошибка: ${result.message}`);
     }
-    return response.json();
+    return result;
   });
 
 export const postLogs = (data: { username: string; action: string }) =>
